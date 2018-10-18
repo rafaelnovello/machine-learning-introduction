@@ -84,6 +84,23 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 
 
+# ## Acurácia
+# 
+# ![](https://cdn-images-1.medium.com/max/1600/1*5XuZ_86Rfce3qyLt7XMlhw.png)
+
+# In[17]:
+
+
+from sklearn.metrics import accuracy_score
+
+accuracy = accuracy_score(y_test, y_pred)
+print("Acurácia: ", accuracy)
+
+
+# ## Precision e Recall
+# 
+# ![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/350px-Precisionrecall.svg.png)
+
 # In[15]:
 
 
@@ -103,23 +120,19 @@ recall = recall_score(y_test, y_pred, average='macro')
 print("Recall: ", recall)
 
 
-# In[17]:
+# ## Matriz de Confusão
 
-
-from sklearn.metrics import accuracy_score
-
-accuracy = accuracy_score(y_test, y_pred)
-print("Acurácia: ", accuracy)
-
-
-# In[18]:
+# In[30]:
 
 
 from sklearn.metrics import confusion_matrix
 
+classes = ['Setosa', 'Versicolour', 'Virginica']
 matrix = confusion_matrix(y_test, y_pred)
+df = pd.DataFrame(matrix, index=classes, columns=classes)
 
-print("Matriz de Confusão: ", matrix)
+print("Matriz de Confusão")
+sns.heatmap(df, annot=True)
 
 
 # In[ ]:
